@@ -1,0 +1,4 @@
+1 毛巾 shijingui 35
+2 mac shijingui 45000
+3 thinkpad zhangsan 9000
+4 剃须刀 zhangsan 100
