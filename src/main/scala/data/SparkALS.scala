@@ -22,11 +22,11 @@ import org.apache.commons.math3.linear._
 import org.apache.spark.sql.SparkSession
 
 /**
- * Alternating least squares matrix factorization.
- *
- * This is an example implementation for learning how to use Spark. For more conventional use,
- * please refer to org.apache.spark.ml.recommendation.ALS.
- */
+  * Alternating least squares matrix factorization.
+  *
+  * This is an example implementation for learning how to use Spark. For more conventional use,
+  * please refer to org.apache.spark.ml.recommendation.ALS.
+  */
 object SparkALS {
 
   // Parameters set through command line arguments
@@ -56,7 +56,7 @@ object SparkALS {
     math.sqrt(sumSqs / (M.toDouble * U.toDouble))
   }
 
-  def update(i: Int, m: RealVector, us: Array[RealVector], R: RealMatrix) : RealVector = {
+  def update(i: Int, m: RealVector, us: Array[RealVector], R: RealMatrix): RealVector = {
     val U = us.length
     val F = us(0).getDimension
     var XtX: RealMatrix = new Array2DRowRealMatrix(F, F)
@@ -127,12 +127,12 @@ object SparkALS {
     for (iter <- 1 to ITERATIONS) {
       println(s"Iteration $iter:")
       ms = sc.parallelize(0 until M, slices)
-                .map(i => update(i, msb.value(i), usb.value, Rc.value))
-                .collect()
+        .map(i => update(i, msb.value(i), usb.value, Rc.value))
+        .collect()
       msb = sc.broadcast(ms) // Re-broadcast ms because it was updated
       us = sc.parallelize(0 until U, slices)
-                .map(i => update(i, usb.value(i), msb.value, Rc.value.transpose()))
-                .collect()
+        .map(i => update(i, usb.value(i), msb.value, Rc.value.transpose()))
+        .collect()
       usb = sc.broadcast(us) // Re-broadcast us because it was updated
       println("RMSE = " + rmse(R, ms, us))
       println()
@@ -148,4 +148,5 @@ object SparkALS {
     new Array2DRowRealMatrix(Array.fill(rows, cols)(math.random))
 
 }
+
 // scalastyle:on println

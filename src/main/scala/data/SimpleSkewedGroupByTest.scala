@@ -23,8 +23,8 @@ import java.util.Random
 import org.apache.spark.sql.SparkSession
 
 /**
- * Usage: SimpleSkewedGroupByTest [numMappers] [numKVPairs] [valSize] [numReducers] [ratio]
- */
+  * Usage: SimpleSkewedGroupByTest [numMappers] [numKVPairs] [valSize] [numReducers] [ratio]
+  */
 object SimpleSkewedGroupByTest {
   def main(args: Array[String]) {
     val spark = SparkSession
@@ -50,7 +50,7 @@ object SimpleSkewedGroupByTest {
           result(i) = (offset, byteArr)
         } else {
           // generate a key for one of the other reducers
-          val key = 1 + ranGen.nextInt(numReducers-1) + offset
+          val key = 1 + ranGen.nextInt(numReducers - 1) + offset
           result(i) = (key, byteArr)
         }
       }
@@ -68,4 +68,5 @@ object SimpleSkewedGroupByTest {
     spark.stop()
   }
 }
+
 // scalastyle:on println

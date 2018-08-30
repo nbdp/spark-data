@@ -3,10 +3,10 @@ package org.spark.data
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
- * 广播变量
- * User: shijingui
- * Date: 2017/1/24
- */
+  * 广播变量
+  * User: shijingui
+  * Date: 2017/1/24
+  */
 object SparkBroadcastTest {
 
   def main(args: Array[String]) {

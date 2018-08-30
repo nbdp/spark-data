@@ -21,8 +21,8 @@ package org.spark.data
 import org.apache.spark.sql.SparkSession
 
 /**
- * Usage: BroadcastTest [slices] [numElem] [blockSize]
- */
+  * Usage: BroadcastTest [slices] [numElem] [blockSize]
+  */
 object BroadcastTest {
   def main(args: Array[String]) {
 
@@ -55,4 +55,5 @@ object BroadcastTest {
     spark.stop()
   }
 }
+
 // scalastyle:on println

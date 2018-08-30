@@ -20,21 +20,20 @@ package org.spark.data
 
 import java.util.Random
 
+import breeze.linalg.{DenseVector, Vector}
 import org.apache.spark.sql.SparkSession
 
 import scala.math.exp
 
-import breeze.linalg.{DenseVector, Vector}
-
 
 /**
- * Logistic regression based classification.
- *
- * This is an example implementation for learning how to use Spark. For more conventional use,
- * please refer to org.apache.spark.ml.classification.LogisticRegression.
- */
+  * Logistic regression based classification.
+  *
+  * This is an example implementation for learning how to use Spark. For more conventional use,
+  * please refer to org.apache.spark.ml.classification.LogisticRegression.
+  */
 object SparkHdfsLR {
-  val D = 10   // Number of dimensions
+  val D = 10 // Number of dimensions
   val rand = new Random(42)
 
   case class DataPoint(x: Vector[Double], y: Double)
@@ -45,7 +44,8 @@ object SparkHdfsLR {
     var x = new Array[Double](D)
     var i = 0
     while (i < D) {
-      x(i) = tok.nextToken.toDouble; i += 1
+      x(i) = tok.nextToken.toDouble;
+      i += 1
     }
     DataPoint(new DenseVector(x), y)
   }
@@ -79,7 +79,9 @@ object SparkHdfsLR {
     val ITERATIONS = args(1).toInt
 
     // Initialize w to a random value
-    var w = DenseVector.fill(D) {2 * rand.nextDouble - 1}
+    var w = DenseVector.fill(D) {
+      2 * rand.nextDouble - 1
+    }
     println("Initial w: " + w)
 
     for (i <- 1 to ITERATIONS) {
@@ -94,4 +96,5 @@ object SparkHdfsLR {
     spark.stop()
   }
 }
+
 // scalastyle:on println

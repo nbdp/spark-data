@@ -23,8 +23,8 @@ import java.util.Random
 import org.apache.spark.sql.SparkSession
 
 /**
- * Usage: GroupByTest [numMappers] [numKVPairs] [KeySize] [numReducers]
- */
+  * Usage: GroupByTest [numMappers] [numKVPairs] [KeySize] [numReducers]
+  */
 object SkewedGroupByTest {
   def main(args: Array[String]) {
     val spark = SparkSession
@@ -59,4 +59,5 @@ object SkewedGroupByTest {
     spark.stop()
   }
 }
+
 // scalastyle:on println

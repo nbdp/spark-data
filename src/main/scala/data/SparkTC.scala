@@ -24,8 +24,8 @@ import scala.collection.mutable
 import scala.util.Random
 
 /**
- * Transitive closure on a graph.
- */
+  * Transitive closure on a graph.
+  */
 object SparkTC {
   val numEdges = 200
   val numVertices = 100
@@ -72,4 +72,5 @@ object SparkTC {
     spark.stop()
   }
 }
+
 // scalastyle:on println

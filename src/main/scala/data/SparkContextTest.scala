@@ -3,9 +3,9 @@ package org.spark.data
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
- * User: shijingui
- * Date: 2017/1/24
- */
+  * User: shijingui
+  * Date: 2017/1/24
+  */
 object SparkContextTest {
 
   def main(args: Array[String]) {

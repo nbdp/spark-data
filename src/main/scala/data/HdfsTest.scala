@@ -37,11 +37,14 @@ object HdfsTest {
     val mapped = file.map(s => s.length).cache()
     for (iter <- 1 to 10) {
       val start = System.currentTimeMillis()
-      for (x <- mapped) { x + 2 }
+      for (x <- mapped) {
+        x + 2
+      }
       val end = System.currentTimeMillis()
-      println("Iteration " + iter + " took " + (end-start) + " ms")
+      println("Iteration " + iter + " took " + (end - start) + " ms")
     }
     spark.stop()
   }
 }
+
 // scalastyle:on println

@@ -4,10 +4,10 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
- * 用户订单分析
- * User: shijingui
- * Date: 2017/2/3
- */
+  * 用户订单分析
+  * User: shijingui
+  * Date: 2017/2/3
+  */
 object UserOrderAnalysis {
 
 
