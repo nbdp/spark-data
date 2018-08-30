@@ -26,5 +26,9 @@ object SparkSql4 {
 
     //
     df.groupBy("age").count().show()
+    //将dafa frame 注册为一张表
+    df.registerTempTable("people")
+    val result = sqlContext.sql("select age from people")
+    result.show()
   }
 }
