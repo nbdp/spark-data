@@ -32,46 +32,12 @@ import scala.collection.mutable.{HashMap, HashSet}
   */
 object LocalKMeans {
   val N = 1000
-  val R = 1000 // Scaling factor
+  val R = 1000
+  // Scaling factor
   val D = 10
   val K = 10
   val convergeDist = 0.001
   val rand = new Random(42)
-
-  def generateData: Array[DenseVector[Double]] = {
-    def generatePoint(i: Int): DenseVector[Double] = {
-      DenseVector.fill(D) {
-        rand.nextDouble * R
-      }
-    }
-
-    Array.tabulate(N)(generatePoint)
-  }
-
-  def closestPoint(p: Vector[Double], centers: HashMap[Int, Vector[Double]]): Int = {
-    var index = 0
-    var bestIndex = 0
-    var closest = Double.PositiveInfinity
-
-    for (i <- 1 to centers.size) {
-      val vCurr = centers.get(i).get
-      val tempDist = squaredDistance(p, vCurr)
-      if (tempDist < closest) {
-        closest = tempDist
-        bestIndex = i
-      }
-    }
-
-    bestIndex
-  }
-
-  def showWarning() {
-    System.err.println(
-      """WARN: This is a naive implementation of KMeans Clustering and is given as an example!
-        |Please use org.apache.spark.ml.clustering.KMeans
-        |for more conventional use.
-      """.stripMargin)
-  }
 
   def main(args: Array[String]) {
 
@@ -119,6 +85,41 @@ object LocalKMeans {
     }
 
     println("Final centers: " + kPoints)
+  }
+
+  def generateData: Array[DenseVector[Double]] = {
+    def generatePoint(i: Int): DenseVector[Double] = {
+      DenseVector.fill(D) {
+        rand.nextDouble * R
+      }
+    }
+
+    Array.tabulate(N)(generatePoint)
+  }
+
+  def closestPoint(p: Vector[Double], centers: HashMap[Int, Vector[Double]]): Int = {
+    var index = 0
+    var bestIndex = 0
+    var closest = Double.PositiveInfinity
+
+    for (i <- 1 to centers.size) {
+      val vCurr = centers.get(i).get
+      val tempDist = squaredDistance(p, vCurr)
+      if (tempDist < closest) {
+        closest = tempDist
+        bestIndex = i
+      }
+    }
+
+    bestIndex
+  }
+
+  def showWarning() {
+    System.err.println(
+      """WARN: This is a naive implementation of KMeans Clustering and is given as an example!
+        |Please use org.apache.spark.ml.clustering.KMeans
+        |for more conventional use.
+      """.stripMargin)
   }
 }
 

@@ -37,62 +37,9 @@ import scala.io.Source._
   */
 object DFSReadWriteTest {
 
+  private val NPARAMS = 2
   private var localFilePath: File = new File(".")
   private var dfsDirPath: String = ""
-
-  private val NPARAMS = 2
-
-  private def readFile(filename: String): List[String] = {
-    val lineIter: Iterator[String] = fromFile(filename).getLines()
-    val lineList: List[String] = lineIter.toList
-    lineList
-  }
-
-  private def printUsage(): Unit = {
-    val usage: String = "DFS Read-Write Test\n" +
-      "\n" +
-      "Usage: localFile dfsDir\n" +
-      "\n" +
-      "localFile - (string) local file to use in test\n" +
-      "dfsDir - (string) DFS directory for read/write tests\n"
-
-    println(usage)
-  }
-
-  private def parseArgs(args: Array[String]): Unit = {
-    if (args.length != NPARAMS) {
-      printUsage()
-      System.exit(1)
-    }
-
-    var i = 0
-
-    localFilePath = new File(args(i))
-    if (!localFilePath.exists) {
-      System.err.println("Given path (" + args(i) + ") does not exist.\n")
-      printUsage()
-      System.exit(1)
-    }
-
-    if (!localFilePath.isFile) {
-      System.err.println("Given path (" + args(i) + ") is not a file.\n")
-      printUsage()
-      System.exit(1)
-    }
-
-    i += 1
-    dfsDirPath = args(i)
-  }
-
-  def runLocalWordCount(fileContents: List[String]): Int = {
-    fileContents.flatMap(_.split(" "))
-      .flatMap(_.split("\t"))
-      .filter(_.nonEmpty)
-      .groupBy(w => w)
-      .mapValues(_.size)
-      .values
-      .sum
-  }
 
   def main(args: Array[String]): Unit = {
     parseArgs(args)
@@ -134,6 +81,58 @@ object DFSReadWriteTest {
         s"and DFS Word Count ($dfsWordCount) disagree.")
     }
 
+  }
+
+  private def readFile(filename: String): List[String] = {
+    val lineIter: Iterator[String] = fromFile(filename).getLines()
+    val lineList: List[String] = lineIter.toList
+    lineList
+  }
+
+  private def parseArgs(args: Array[String]): Unit = {
+    if (args.length != NPARAMS) {
+      printUsage()
+      System.exit(1)
+    }
+
+    var i = 0
+
+    localFilePath = new File(args(i))
+    if (!localFilePath.exists) {
+      System.err.println("Given path (" + args(i) + ") does not exist.\n")
+      printUsage()
+      System.exit(1)
+    }
+
+    if (!localFilePath.isFile) {
+      System.err.println("Given path (" + args(i) + ") is not a file.\n")
+      printUsage()
+      System.exit(1)
+    }
+
+    i += 1
+    dfsDirPath = args(i)
+  }
+
+  private def printUsage(): Unit = {
+    val usage: String = "DFS Read-Write Test\n" +
+      "\n" +
+      "Usage: localFile dfsDir\n" +
+      "\n" +
+      "localFile - (string) local file to use in test\n" +
+      "dfsDir - (string) DFS directory for read/write tests\n"
+
+    println(usage)
+  }
+
+  def runLocalWordCount(fileContents: List[String]): Int = {
+    fileContents.flatMap(_.split(" "))
+      .flatMap(_.split("\t"))
+      .filter(_.nonEmpty)
+      .groupBy(w => w)
+      .mapValues(_.size)
+      .values
+      .sum
   }
 }
 

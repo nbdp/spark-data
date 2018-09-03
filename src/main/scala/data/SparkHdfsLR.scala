@@ -33,30 +33,9 @@ import scala.math.exp
   * please refer to org.apache.spark.ml.classification.LogisticRegression.
   */
 object SparkHdfsLR {
-  val D = 10 // Number of dimensions
+  val D = 10
+  // Number of dimensions
   val rand = new Random(42)
-
-  case class DataPoint(x: Vector[Double], y: Double)
-
-  def parsePoint(line: String): DataPoint = {
-    val tok = new java.util.StringTokenizer(line, " ")
-    var y = tok.nextToken.toDouble
-    var x = new Array[Double](D)
-    var i = 0
-    while (i < D) {
-      x(i) = tok.nextToken.toDouble;
-      i += 1
-    }
-    DataPoint(new DenseVector(x), y)
-  }
-
-  def showWarning() {
-    System.err.println(
-      """WARN: This is a naive implementation of Logistic Regression and is given as an example!
-        |Please use org.apache.spark.ml.classification.LogisticRegression
-        |for more conventional use.
-      """.stripMargin)
-  }
 
   def main(args: Array[String]) {
 
@@ -95,6 +74,28 @@ object SparkHdfsLR {
     println("Final w: " + w)
     spark.stop()
   }
+
+  def parsePoint(line: String): DataPoint = {
+    val tok = new java.util.StringTokenizer(line, " ")
+    var y = tok.nextToken.toDouble
+    var x = new Array[Double](D)
+    var i = 0
+    while (i < D) {
+      x(i) = tok.nextToken.toDouble;
+      i += 1
+    }
+    DataPoint(new DenseVector(x), y)
+  }
+
+  def showWarning() {
+    System.err.println(
+      """WARN: This is a naive implementation of Logistic Regression and is given as an example!
+        |Please use org.apache.spark.ml.classification.LogisticRegression
+        |for more conventional use.
+      """.stripMargin)
+  }
+
+  case class DataPoint(x: Vector[Double], y: Double)
 }
 
 // scalastyle:on println

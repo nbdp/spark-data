@@ -28,18 +28,57 @@ import org.apache.commons.math3.linear._
   */
 object LocalALS {
 
-  // Parameters set through command line arguments
-  var M = 0 // Number of movies
-  var U = 0 // Number of users
-  var F = 0 // Number of features
-  var ITERATIONS = 0
   val LAMBDA = 0.01 // Regularization coefficient
+  // Parameters set through command line arguments
+  var M = 0
+  // Number of movies
+  var U = 0
+  // Number of users
+  var F = 0
+  // Number of features
+  var ITERATIONS = 0
+
+  def main(args: Array[String]) {
+
+    args match {
+      case Array(m, u, f, iters) =>
+        M = m.toInt
+        U = u.toInt
+        F = f.toInt
+        ITERATIONS = iters.toInt
+      case _ =>
+        System.err.println("Usage: LocalALS <M> <U> <F> <iters>")
+        System.exit(1)
+    }
+
+    showWarning()
+
+    println(s"Running with M=$M, U=$U, F=$F, iters=$ITERATIONS")
+
+    val R = generateR()
+
+    // Initialize m and u randomly
+    var ms = Array.fill(M)(randomVector(F))
+    var us = Array.fill(U)(randomVector(F))
+
+    // Iteratively update movies then users
+    for (iter <- 1 to ITERATIONS) {
+      println(s"Iteration $iter:")
+      ms = (0 until M).map(i => updateMovie(i, ms(i), us, R)).toArray
+      us = (0 until U).map(j => updateUser(j, us(j), ms, R)).toArray
+      println("RMSE = " + rmse(R, ms, us))
+      println()
+    }
+  }
 
   def generateR(): RealMatrix = {
     val mh = randomMatrix(M, F)
     val uh = randomMatrix(U, F)
     mh.multiply(uh.transpose())
   }
+
+  private def randomMatrix(rows: Int, cols: Int): RealMatrix =
+    new Array2DRowRealMatrix(Array.fill(rows, cols)(math.random))
 
   def rmse(targetR: RealMatrix, ms: Array[RealVector], us: Array[RealVector]): Double = {
     val r = new Array2DRowRealMatrix(M, U)
@@ -101,44 +140,8 @@ object LocalALS {
       """.stripMargin)
   }
 
-  def main(args: Array[String]) {
-
-    args match {
-      case Array(m, u, f, iters) =>
-        M = m.toInt
-        U = u.toInt
-        F = f.toInt
-        ITERATIONS = iters.toInt
-      case _ =>
-        System.err.println("Usage: LocalALS <M> <U> <F> <iters>")
-        System.exit(1)
-    }
-
-    showWarning()
-
-    println(s"Running with M=$M, U=$U, F=$F, iters=$ITERATIONS")
-
-    val R = generateR()
-
-    // Initialize m and u randomly
-    var ms = Array.fill(M)(randomVector(F))
-    var us = Array.fill(U)(randomVector(F))
-
-    // Iteratively update movies then users
-    for (iter <- 1 to ITERATIONS) {
-      println(s"Iteration $iter:")
-      ms = (0 until M).map(i => updateMovie(i, ms(i), us, R)).toArray
-      us = (0 until U).map(j => updateUser(j, us(j), ms, R)).toArray
-      println("RMSE = " + rmse(R, ms, us))
-      println()
-    }
-  }
-
   private def randomVector(n: Int): RealVector =
     new ArrayRealVector(Array.fill(n)(math.random))
-
-  private def randomMatrix(rows: Int, cols: Int): RealMatrix =
-    new Array2DRowRealMatrix(Array.fill(rows, cols)(math.random))
 
 }
 
