@@ -22,4 +22,7 @@ sqlContext.uncacheTable("tableName")
 | mapPartitionWithIndex(func)|与mapPartitions类似，但输入会多提供一个整数表示分号的编号，所以func的类型是（Int,Iterator&lt;T&gt;） =>Iterator&lt;U&gt;,多了一个Int|
 |union(otherDataset)|合并两个RDD，不去重，要求两个RDD中的元素类型一致|
 |distinct([numTasks])|对原RDD进行去重操作，返回的RDD中没有重复的成员|
-|groupByKey([numTasks])||
+|groupByKey([numTasks])|对&lt;key,value&gt;结构的RDD进行类似RMDB的group by聚合操作，具有相同key的RDD成员的value会被聚合在一起，返回的RDD结构是（key,Iterator<value>）。注意:groupByKey除了聚合，不对value进行任何操作，除非你调用完groupByKey之后没有进一步的操作，直接调用Action操作，否则建议使用下面的reduceByKey或aggregateByKey以获取更高的性能。注意：groupByKey涉及shuffle操作，默认输出的并发数量取决于数据输入RDD的分区数量，也可以通过可选参数[numTasks]手工指定|
+|||
+
+
