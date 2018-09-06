@@ -23,6 +23,8 @@ sqlContext.uncacheTable("tableName")
 |union(otherDataset)|合并两个RDD，不去重，要求两个RDD中的元素类型一致|
 |distinct([numTasks])|对原RDD进行去重操作，返回的RDD中没有重复的成员|
 |groupByKey([numTasks])|对&lt;key,value&gt;结构的RDD进行类似RMDB的group by聚合操作，具有相同key的RDD成员的value会被聚合在一起，返回的RDD结构是（key,Iterator<value>）。注意:groupByKey除了聚合，不对value进行任何操作，除非你调用完groupByKey之后没有进一步的操作，直接调用Action操作，否则建议使用下面的reduceByKey或aggregateByKey以获取更高的性能。注意：groupByKey涉及shuffle操作，默认输出的并发数量取决于数据输入RDD的分区数量，也可以通过可选参数[numTasks]手工指定|
-|||
+|reduceByKey(func,[numTasks])|对&lt;key,value&gt;结构的RDD进行聚合，对具有相同key的value调用func来进行reduce操作，func的类型必须是(v,v) => v|
+|sortByKey([ascending],[numTasks])|对&lt;key,value&gt;结构的RDD进行升序或降序排列|
+|join(otherDataset,[numTasks])|对(k,v)和（k,w）进行join操作，返回（k,(v,w)）,外连接函数为leftOuterJoin,rightOuterJoin,fullOuterJoin|
 
 
