@@ -22,11 +22,11 @@ import org.apache.commons.math3.linear._
 import org.apache.spark.sql.SparkSession
 
 /**
-  * Alternating least squares matrix factorization.
-  *
-  * This is an example implementation for learning how to use Spark. For more conventional use,
-  * please refer to org.apache.spark.ml.recommendation.ALS.
-  */
+ * Alternating least squares matrix factorization.
+ *
+ * This is an example implementation for learning how to use Spark. For more conventional use,
+ * please refer to org.apache.spark.ml.recommendation.ALS.
+ */
 object SparkALS {
 
   val LAMBDA = 0.01 // Regularization coefficient

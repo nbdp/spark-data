@@ -5,8 +5,8 @@ import java.util.Random
 import org.apache.spark.sql.SparkSession
 
 /**
-  * Usage: SimpleSkewedGroupByTest [numMappers] [numKVPairs] [valSize] [numReducers] [ratio]
-  */
+ * Usage: SimpleSkewedGroupByTest [numMappers] [numKVPairs] [valSize] [numReducers] [ratio]
+ */
 object SimpleSkewedGroupByTest {
   def main(args: Array[String]) {
     val spark = SparkSession

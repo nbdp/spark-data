@@ -5,8 +5,8 @@ import org.apache.spark.sql.SparkSession
 
 
 /**
-  * Usage: MultiBroadcastTest [slices] [numElem]
-  */
+ * Usage: MultiBroadcastTest [slices] [numElem]
+ */
 object MultiBroadcastTest {
   def main(args: Array[String]) {
 

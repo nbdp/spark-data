@@ -4,8 +4,8 @@ import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
-  * @author shijingui on 2018/9/9
-  */
+ * @author shijingui on 2018/9/9
+ */
 object one {
 
 

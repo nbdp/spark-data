@@ -5,8 +5,8 @@ import org.apache.spark.sql.{Row, SQLContext}
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * @author shijingui on 2018/8/29
-  */
+ * @author shijingui on 2018/8/29
+ */
 object SparkSql1 {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf()

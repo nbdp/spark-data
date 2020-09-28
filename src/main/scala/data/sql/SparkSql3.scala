@@ -4,8 +4,8 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * @author shijingui on 2018/8/28
-  */
+ * @author shijingui on 2018/8/28
+ */
 object SparkSql3 {
 
 

@@ -27,11 +27,11 @@ import scala.math.exp
 
 
 /**
-  * Logistic regression based classification.
-  *
-  * This is an example implementation for learning how to use Spark. For more conventional use,
-  * please refer to org.apache.spark.ml.classification.LogisticRegression.
-  */
+ * Logistic regression based classification.
+ *
+ * This is an example implementation for learning how to use Spark. For more conventional use,
+ * please refer to org.apache.spark.ml.classification.LogisticRegression.
+ */
 object SparkHdfsLR {
   val D = 10
   // Number of dimensions
@@ -96,6 +96,7 @@ object SparkHdfsLR {
   }
 
   case class DataPoint(x: Vector[Double], y: Double)
+
 }
 
 // scalastyle:on println

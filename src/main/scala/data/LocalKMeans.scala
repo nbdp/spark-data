@@ -7,11 +7,11 @@ import breeze.linalg.{DenseVector, Vector, squaredDistance}
 import scala.collection.mutable.{HashMap, HashSet}
 
 /**
-  * K-means clustering.
-  *
-  * This is an example implementation for learning how to use Spark. For more conventional use,
-  * please refer to org.apache.spark.ml.clustering.KMeans.
-  */
+ * K-means clustering.
+ *
+ * This is an example implementation for learning how to use Spark. For more conventional use,
+ * please refer to org.apache.spark.ml.clustering.KMeans.
+ */
 object LocalKMeans {
   val N = 1000
   val R = 1000

@@ -3,9 +3,9 @@ package org.spark.data.sql
 import org.apache.spark.sql.SparkSession
 
 /**
-  * User: shijingui
-  * Date: 2017/3/10
-  */
+ * User: shijingui
+ * Date: 2017/3/10
+ */
 object SparkSql2 {
   def main(args: Array[String]) {
     val spark = SparkSession.builder().appName("SparkSql-test")

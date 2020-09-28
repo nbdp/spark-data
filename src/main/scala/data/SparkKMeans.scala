@@ -23,11 +23,11 @@ import org.apache.spark.sql.SparkSession
 
 
 /**
-  * K-means clustering.
-  *
-  * This is an example implementation for learning how to use Spark. For more conventional use,
-  * please refer to org.apache.spark.ml.clustering.KMeans.
-  */
+ * K-means clustering.
+ *
+ * This is an example implementation for learning how to use Spark. For more conventional use,
+ * please refer to org.apache.spark.ml.clustering.KMeans.
+ */
 object SparkKMeans {
 
   def main(args: Array[String]) {
