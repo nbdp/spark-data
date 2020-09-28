@@ -10,7 +10,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>2.4.2</jackson.version>
-        <scala.version>2.10.6</scala.version>
+        <scala.version>2.13.3</scala.version>
         <slf4j.version>1.7.7</slf4j.version>
         <scala.maven.version>2.10.6</scala.maven.version>
         <angel.version>2.3.0</angel.version>
