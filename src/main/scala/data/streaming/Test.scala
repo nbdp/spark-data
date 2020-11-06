@@ -11,7 +11,6 @@ import org.apache.spark.sql.SparkSession
  */
 object Test {
 
-
   def main(args: Array[String]): Unit = {
     // 初始化Spark
     val builder = SparkSession.builder()

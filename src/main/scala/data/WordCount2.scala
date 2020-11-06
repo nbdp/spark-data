@@ -15,8 +15,8 @@ object WordCount2 {
 
     val data = sparkSession.read.textFile("src/main/resources/word.txt").rdd
     val wordCount = data.flatMap(word => word.split(" ")).map(word => (word, 1)).reduceByKey(_ + _)
-    for ((k, v) <- wordCount) {
-      println(k + ":" + v)
-    }
+//    for ((k, v) <- wordCount) {
+//      println(k + ":" + v)
+//    }
   }
 }
